@@ -18,8 +18,8 @@ class Table:
             if not isinstance(row[col], col_type):
                 raise TypeError(f"Column {col} must be {col_type.__name__}")
             
-        # Enforce primary key uniqueness
-        
+        # primary key uniqueness
+
         if self.primary_key:
             for r in self.rows:
                 if r[self.primary_key] == row[self.primary_key]:
