@@ -25,4 +25,16 @@ class Table:
                 if r[self.primary_key] == row[self.primary_key]:
                     raise ValueError("Duplicate Primary key")
         self.rows.append(row)
+
+    def select(self, condition=lambda r: True):
+        return [r for r in self.rows if condition(r)]
+    
+    def update(self, condition, updates):
+        for r in self.rows:
+            if condition(r):
+                r.update(updates)
+
+    def delete(self, condition):
+        self.rows = [r for r in self.rows if not condition(r)]
+
             
